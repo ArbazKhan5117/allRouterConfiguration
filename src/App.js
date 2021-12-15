@@ -6,21 +6,24 @@ import {
   Redirect,
   BrowserRouter
 } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import PrivateRoute from './routes/privateRouters';
 import ProtectedRoutes from './routes/protectedRouters';
 import PublicRoute from './routes/publicRouters';
 import './styles/app.scss';
+import { initialState } from './redux/reducers/state';
 import Login from './components/login/login';
 import Signup from './components/signup/signup';
-import Users from './components/users/users';
 function App() {
-  const isAuthenticated = true;
-  
+  const dispatch = useDispatch();
+  const state = useSelector(state => state);
+  const isAuthenticated = state?.value;
+  console.log(state?.value);
   return (
     <div className="App">
-      {console.log(isAuthenticated)}
+     
       <header className="App-header">
-        <h1 className="heading">React with SAAS</h1>
+        <h1 className="heading">(React with SAAS) and redux, routes(private, public, protected, authToken) configuration implemented </h1>
         <BrowserRouter>
         <Switch>
         <PublicRoute
